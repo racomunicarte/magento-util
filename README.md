@@ -1,2 +1,2 @@
-# magento_util
+# Magento scripts
 Magento PHP scripts
