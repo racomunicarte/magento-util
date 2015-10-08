@@ -83,7 +83,7 @@ class B2w{
 		$gallery = Mage::getModel('catalog/product')->load($loaded_product->getId())->getMediaGalleryImages();
 		if($gallery){
 			foreach($gallery as $image){
-				if(!array_search($image->getUrl(), $images)){
+				if(array_search($image->getUrl(), $images) === false){
 					$images[] = $image->getUrl();
 				}
 				
