@@ -17,14 +17,14 @@ foreach($json_google_feed["channel"]["item"] as $prod){
         echo "<PROD_DESCRIPTION><![CDATA[".trim($prod["description"])."]]></PROD_DESCRIPTION>";
         
         $price = trim($prod["g-sale_price"]);
-		$price = str_replace(" BRL", "", $price);
+	$price = str_replace(" BRL", "", $price);
         
         echo "<PROD_PRICE_OLD>".$price."</PROD_PRICE_OLD>";
         
         $price = trim($prod["g-price"]);
-		$price = str_replace(" BRL", "", $price);
+	$price = str_replace(" BRL", "", $price);
         
-		echo "<PROD_PRICE>".$price."</PROD_PRICE>";
+	echo "<PROD_PRICE>".$price."</PROD_PRICE>";
         echo "<MANUFACTURER><![CDATA[BRAND]]></MANUFACTURER> ";
         echo "<CURRENCY_SIMBOL><![CDATA[BRL]]></CURRENCY_SIMBOL>";
         echo "<PROD_DESCRIPTION_LONG><![CDATA[".trim($prod["description"])."]]></PROD_DESCRIPTION_LONG>";
