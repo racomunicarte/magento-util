@@ -17,7 +17,7 @@ if($products){
 	$installments = Mage::getStoreConfig('ipgintegracaodiretapagamento/cielo');
 	$interest_free = $installments["parcelas_sem_juros"];
 	
-	/*$xml .= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";*/
+	$xml .= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	$xml .= "<rss xmlns:g=\"http://base.google.com/ns/1.0\" version=\"2.0\">";
 		$xml .= "<channel>";
 			$xml .= "<title>Store name</title>";
