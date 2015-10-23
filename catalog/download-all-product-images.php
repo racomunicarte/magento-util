@@ -58,7 +58,5 @@ if($products){
 				$image_name = "";
 			}
 		}
-		
-		die("fim");
 	}
 }
