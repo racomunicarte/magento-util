@@ -4,7 +4,6 @@
  * */
 
 $MAGENTO_PATH = "/PATH/TO/MAGENTO";
-$MAGENTO_PATH = "/var/www/netchairs.com.br";
  
 require_once($MAGENTO_PATH."/app/Mage.php");
 Mage::app();
@@ -15,10 +14,20 @@ $products = Mage::getModel('catalog/product')
 
 if($products){
 
-	exec("mkdir images-".date("Y-m-d_H-i-s"));
+	$download_dir = "images-".date("Y-m-d_H-i-s");
+	exec("mkdir ".$download_dir);
+	exec("cd ".$download_dir);
 
 	foreach($products as $product){
 		$_product = Mage::getModel('catalog/product')->load($product->getId());
+
+		$product_name = strtolower($_product->getName());
+                $product_name = iconv('UTF-8', 'ASCII//TRANSLIT', $product_name);
+               	$product_name = str_replace(" ", "-", $product_name);
+
+
+		$product_image_dir = $download_dir."/".$_product->getSku()."-".$product_name;
+		exec("mkdir ".$product_image_dir);
 		
 		$images = array();
 		
@@ -34,8 +43,22 @@ if($products){
 				
 			}
 		}
+
+		if($images){
+			$count = 0;
+			
+			foreach($images as $image){
+				$count++;
+
+				$image_name .= $product_name."_".str_pad($count, 2, "0", STR_PAD_LEFT); 
+				$image_name .= ".".substr($image, -3);
+
+				exec("wget ".$image." -O".$product_image_dir."/".$image_name);
+
+				$image_name = "";
+			}
+		}
 		
-		var_dump($images);
-		die();
+		die("fim");
 	}
 }
