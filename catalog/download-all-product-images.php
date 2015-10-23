@@ -4,7 +4,7 @@
  * */
 
 $MAGENTO_PATH = "/PATH/TO/MAGENTO";
-$CSV_FILE = "/PATH/TO/CSV/new-prices.csv";
+$MAGENTO_PATH = "/var/www/netchairs.com.br";
  
 require_once($MAGENTO_PATH."/app/Mage.php");
 Mage::app();
@@ -14,8 +14,11 @@ $products = Mage::getModel('catalog/product')
 			->addAttributeToFilter('status', array('in'=>Mage::getSingleton('catalog/product_status')->getSaleableStatusIds()));
 
 if($products){
+
+	exec("mkdir images-".date("Y-m-d_H-i-s"));
+
 	foreach($products as $product){
-		$_product = Mage::getModel('catalog/product')->load($magento_product->getId());
+		$_product = Mage::getModel('catalog/product')->load($product->getId());
 		
 		$images = array();
 		
