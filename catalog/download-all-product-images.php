@@ -1,6 +1,6 @@
 <?php
 /**
- * Download all produc images.
+ * Download all product images.
  * */
 
 $MAGENTO_PATH = "/PATH/TO/MAGENTO";
